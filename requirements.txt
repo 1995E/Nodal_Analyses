@@ -1,0 +1,8 @@
+                
+numpy                       
+
+matplotlib         
+
+psapy         
+
+scipy        

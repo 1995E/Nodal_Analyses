@@ -1,8 +1,5 @@
-                
+streamlit            
 numpy                       
-
 matplotlib         
-
 psapy         
-
 scipy        

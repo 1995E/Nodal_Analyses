@@ -1,7 +1,0 @@
-streamlit            
-numpy                       
-matplotlib         
-psapy         
-scipy
-streamlit_option_menu 
-PIL       

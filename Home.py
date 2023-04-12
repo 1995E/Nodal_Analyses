@@ -18,7 +18,7 @@ from scipy.optimize import least_squares       # Biblioteca responsável pela de
 
 from streamlit_option_menu import option_menu  # Biblioteca responsável pela criação das abas
 
-#from PIL import Image                          # Biblioteca responsável pela upload de imagens
+from PIL import Image                          # Biblioteca responsável pela upload de imagens
 
 # CSS Customization
 
@@ -145,16 +145,10 @@ rw = st.sidebar.number_input('Raio do poço** (ft)', min_value = 0.1, max_value 
 # Página Home
 
 if selected == 'Home':
+          
+    image=Image.open('logoblack.jpeg')
     
-      def oil_rate(QL, WC):
-        
-        oil_rate = QL*(1-0.01*WC)
-        
-        return oil_rate
-       
-    #image=Image.open('logoblack.jpeg')
-    
-    #st.image(image)
+    st.image(image)
     
 
 # Página 'Curva IPR'
@@ -512,7 +506,7 @@ if selected == 'Análise Nodal':
         st.pyplot(fig)
     
     
-#if selected =='Contactos':
+if selected =='Contactos':
     
     image=Image.open('logoblack.jpeg')
     

@@ -4,4 +4,4 @@ matplotlib
 psapy         
 scipy
 streamlit_option_menu 
-Image       
+PIL      

@@ -19,6 +19,10 @@ from scipy.optimize import least_squares       # Biblioteca responsável pela de
 from streamlit_option_menu import option_menu  # Biblioteca responsável pela criação das abas
 
 
+
+# Your Streamlit app code goes here...
+
+
 # CSS Customization
 
 page_bg_img = """
@@ -61,9 +65,9 @@ selected = option_menu(
         
     menu_title = 'PetroConsulting V.1',
         
-    options = ['Home', 'Curva IPR','Curva VLP', 'Análise Nodal', 'Contactos'],
+    options = ['Home', 'Curva IPR','Curva VLP', 'Análise Nodal'],
     
-    icons = ['house', 'graph-down', 'graph-up', 'shuffle', 'telephone'],
+    icons = ['house', 'graph-down', 'graph-up', 'shuffle',],
     
     menu_icon = 'cast',
     
@@ -145,10 +149,17 @@ rw = st.sidebar.number_input('Raio do poço** (ft)', min_value = 0.1, max_value 
 
 if selected == 'Home':
           
-    st.write('WhatsApp')
-    
-    
-    
+    st.markdown('Esta ferramenta faz o cálculo das curvas IPR e VLP, para a determinação da vazão de produção de um poço petrolífero sob uma determinada condição de operação.\
+                Foi desenvolvida exclusivamente pelo team da Petro Consulting, com intuito de fornecer aos estudantes de Engenharia de Petróleo ferramentas computacionais para que possam conciliar a teoria com a prática.')
+                
+    st.markdown('Para saber mais sobre nós, podem aceder as nossas páginas sociais:')
+                
+    st.markdown('Facebook: https://www.facebook.com/petroconsultingao') 
+                
+    st.markdown('Instagram: https://www.instagram.com/petroconsultingao ')
+                
+    st.markdown('linkedin: Petro Consulting')
+
 
 # Página 'Curva IPR'
 
@@ -503,9 +514,3 @@ if selected == 'Análise Nodal':
         plt.grid()
 
         st.pyplot(fig)
-    
-    
-if selected =='Contactos':
-    
-    st.write('Contactos')
-

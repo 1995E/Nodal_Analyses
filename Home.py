@@ -19,8 +19,14 @@ from scipy.optimize import least_squares       # Biblioteca responsável pela de
 from streamlit_option_menu import option_menu  # Biblioteca responsável pela criação das abas
 
 
+def set_theme():
+    # Set the default theme to "light"
+    st.set_page_config(page_title="My App", page_icon=":guardsman:", layout="wide", initial_sidebar_state="expanded")
+    st.set_option('theme', 'dark')
 
-# Your Streamlit app code goes here...
+    set_theme()
+
+# Rest of your Streamlit app code goes here
 
 
 # CSS Customization
@@ -30,11 +36,8 @@ page_bg_img = """
 <style>
 [data-testid="stAppViewContainer"] {
 
-background-image: linear-gradient(#000000, #000000, #000000);
+background-color: black;
 background-size: cover;
-
-#background-color: #000000;
-
 opacity: 0.8;
     
 }
@@ -503,14 +506,37 @@ if selected == 'Análise Nodal':
             
         fig, ax = plt.subplots()
         
-        plt.title('Curva IPR')
+        plt.title('Análise nodal')
         
         ax.set_xlabel ('Vazão de produção (STB/d)', fontsize = 12)
         
         ax.set_ylabel('Pressão (Psia)', fontsize = 12)
 
-        ax.plot(IPR_comb[0], IPR_comb[1], rates, bhps, '-')
+        ax.plot(IPR_comb[0], IPR_comb[1],'v', rates, bhps, '--')
+        
+        IPR_inter = interp1d(IPR_comb[0], IPR_comb[1], kind='cubic')
+        
+        VLP_inter = interp1d(rates, bhps, kind='cubic')
+        
+        def interpolation(Q_prodution):
+            
+            bhp_IPR = IPR_inter(Q_prodution)
+            
+            bhp_VLP = VLP_inter(Q_prodution)
+            
+            a = (bhp_IPR-bhp_VLP)
+            
+            return a
+        
+        max_val = max(IPR_comb[0])
+        
+        Q_solution = least_squares(interpolation, max_val, bounds=((1), (max_val)))
+                       
+        st.markdown('A vazão de produção do poço em bbl/d é de :')
+        
+        st.markdown(Q_solution['x'])
         
         plt.grid()
 
         st.pyplot(fig)
+
